@@ -2,7 +2,7 @@
 Input: a List of integers as well as an integer `k` representing the size of the sliding window
 Returns: a List of integers
 '''
-def sliding_window_max(nums, k):
+def sliding_window_max_first_attempt(nums, k):
     # Your code here
     # What's clear to me is that any loop used can only go from 0 to len() - k, assuming the array has len() > k
     # Otherwise, no loop is needed if len() <= k
@@ -30,6 +30,21 @@ def sliding_window_max(nums, k):
             output[x] = maxvalue
 
     # This works well for the normal test, but I calculate it would take approximately 18 hours to complete the large_input test using the above method
+    return output
+
+
+
+def sliding_window_max(nums, k):
+    # This time, I'll ignore the if-else statement (since none of the tests ever went to the if part)
+    # and utilize array slicing and python's max function for numpy arrays
+    output = [0] * (len(nums) - k + 1)
+
+    for z in range(len(nums) - k + 1):
+        window = nums[z:z + k]
+        maxval = max(window)
+        output[z] = maxval
+
+    # This version was only about 3 times faster than my original version with the nested for-loop. That means it would've still taken about 6 hours to complete the large file
     return output
 
 
