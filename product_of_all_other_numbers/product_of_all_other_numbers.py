@@ -4,8 +4,24 @@ Returns: a List of integers
 '''
 def product_of_all_other_numbers(arr):
     # Your code here
+    # This one seems straight-forward.
+    # An obvious answer would be to get a product of the entire array as a base value, then loop through the array
+    # and store in each element of a new array the base value / current value. However, what if 1 element is 0? Then you get a "Cannot divide by 0 error"
+    # So without using division, I figure I would have a base value of 1 and loop through the array to multiply into that base value, and skip the value
+    # in whichever index of the for-loop I happen to be in at that time.
 
-    pass
+    temp = [0] * len(arr)
+
+    for skippable in range(len(arr)):
+        baseval = 1
+
+        for i in range(len(arr)):
+            if i != skippable:
+                baseval *= arr[i]
+
+        temp[skippable] = baseval
+
+    return temp
 
 
 if __name__ == '__main__':
